@@ -124,8 +124,9 @@
                     locale = masterConfig.locale;
                     if (!locale) {
                         locale = masterConfig.locale =
-                            typeof navigator === "undefined" ? "root" :
-                            (navigator.language ||
+                            typeof navigator === "undefined" && typeof localStorage === "undefined" ? "root" :
+                            (localStorage.getItem('locale') ||
+                             navigator.language ||
                              navigator.userLanguage || "root").toLowerCase();
                     }
                     parts = locale.split("-");
